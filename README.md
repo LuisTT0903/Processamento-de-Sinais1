@@ -123,7 +123,9 @@ Processamento-de-Sinais1/
 │
 └── Aula_03/
     ├── *.ipynb                   -> um notebook por questão
-    └── Audios_Usados/            -> arquivos de entrada (.wav)
+    ├── Audios_Usados/            -> arquivos de entrada (.wav)
+    ├── resultados_graficos/      -> figuras geradas (.png)
+    └── relatorio/                -> relatório da aula (.pdf)
 ```
 
 Os notebooks das Aulas 02 e 03 estão nomeados por questão, de modo que o arquivo correspondente a cada item da atividade é identificado pelo próprio nome. A Aula 01 concentra toda a atividade em um único notebook.
@@ -148,4 +150,4 @@ As bibliotecas utilizadas estão listadas em `requirements.txt`. Nenhuma versão
 
 ## Relatórios
 
-Os relatórios das Aulas 01 e 02 estão em `relatorio/`, dentro da pasta de cada aula, em formato PDF. Cada figura apresentada nos relatórios é referenciada pelo arquivo correspondente em `resultados_graficos/`, e os códigos que a geraram estão nos notebooks da mesma pasta.
+Os relatórios das Aulas 01, 02 e 03 estão em `relatorio/`, dentro da pasta de cada aula, em formato PDF. Cada figura apresentada nos relatórios é referenciada pelo arquivo correspondente em `resultados_graficos/`, e os códigos que a geraram estão nos notebooks da mesma pasta.
