@@ -19,12 +19,13 @@ Cada aula prática corresponde a uma pasta deste repositório e a um relatório 
 | Aula 03 | Filtros digitais: resposta em frequência, filtros FIR e IIR | [`Aula_03/`](Aula_03) |
 | Aula 04 | Relação DTFT/DFT, resolução espectral e compressão de áudio pela DFT | [`Aula_04/`](Aula_04) |
 | Aula 05 | Compressão de sinais 1-D e 2-D pela DCT | [`Aula_05/`](Aula_05) |
+| Aula 06 | Transformada de Hadamard em sistemas CDMA e transformadas de wavelets | [`Aula_06/`](Aula_06) |
 
 ---
 
 ## Como executar (Google Colab)
 
-Esta é a forma recomendada de reproduzir os experimentos. **Não é necessário instalar nada, clonar o repositório ou baixar arquivos manualmente.** O Colab já traz NumPy, SciPy, Matplotlib, Pillow e IPython pré-instalados, e os notebooks baixam automaticamente os arquivos `.wav` e `.jpg` que utilizam.
+Esta é a forma recomendada de reproduzir os experimentos. **Não é necessário instalar nada, clonar o repositório ou baixar arquivos manualmente.** O Colab já traz NumPy, SciPy, Matplotlib, Pillow e IPython pré-instalados, e os notebooks baixam automaticamente os arquivos `.wav`, `.jpg` e `.mat` que utilizam. O PyWavelets, usado na Aula 06, não vem pré-instalado, mas os próprios notebooks o instalam na primeira célula quando ele não é encontrado.
 
 1. Abra a pasta da aula desejada aqui no GitHub e clique no notebook da questão.
 2. Clique no badge **Open in Colab**, presente na primeira célula de cada notebook.
@@ -58,9 +59,10 @@ Caso se prefira executar na própria máquina, os notebooks também funcionam lo
 
 - Python 3.10 ou superior
 - NumPy — operações numéricas e vetoriais
-- SciPy — leitura de arquivos `.wav`, geração de chirps, reamostragem, convolução, projeto de filtros e cálculo das transformadas DFT e DCT
+- SciPy — leitura de arquivos `.wav` e `.mat`, geração de chirps, reamostragem, convolução, projeto de filtros, matriz de Hadamard e cálculo das transformadas DFT e DCT
 - Matplotlib — geração dos gráficos
 - Pillow — leitura da imagem utilizada na Aula 05
+- PyWavelets — transformadas de wavelets utilizadas na Aula 06
 - IPython — reprodução sonora dos sinais dentro do notebook
 - Jupyter Notebook — execução dos notebooks
 
@@ -100,7 +102,7 @@ Nos notebooks da Aula 02, a variável `usar_colab`, definida no início do códi
 usar_colab = False
 ```
 
-para que os arquivos sejam lidos da pasta local em vez de baixados. Os notebooks das Aulas 01, 03, 04 e 05 obtêm os arquivos por download em qualquer ambiente e, por isso, exigem conexão com a internet mesmo na execução local.
+para que os arquivos sejam lidos da pasta local em vez de baixados. Os notebooks das Aulas 01, 03, 04, 05 e 06 obtêm os arquivos por download em qualquer ambiente e, por isso, exigem conexão com a internet mesmo na execução local.
 
 ---
 
@@ -136,16 +138,21 @@ Processamento-de-Sinais1/
 │   ├── resultados_graficos/      -> figuras geradas (.png)
 │   └── relatorio/                -> relatório da aula (.pdf)
 │
-└── Aula_05/
+├── Aula_05/
+│   ├── *.ipynb                   -> um notebook por questão
+│   ├── Audios_Usados/            -> arquivos de entrada (.wav)
+│   ├── Imagens_Usadas/           -> arquivos de entrada (.jpg)
+│   ├── resultados_graficos/      -> figuras geradas (.png)
+│   ├── resultados_audios/        -> áudios gerados (.wav)
+│   └── relatorio/                -> relatório da aula (.pdf)
+│
+└── Aula_06/
     ├── *.ipynb                   -> um notebook por questão
-    ├── Audios_Usados/            -> arquivos de entrada (.wav)
-    ├── Imagens_Usadas/           -> arquivos de entrada (.jpg)
     ├── resultados_graficos/      -> figuras geradas (.png)
-    ├── resultados_audios/        -> áudios gerados (.wav)
     └── relatorio/                -> relatório da aula (.pdf)
 ```
 
-Os notebooks das Aulas 02 a 05 estão nomeados por questão, de modo que o arquivo correspondente a cada item da atividade é identificado pelo próprio nome. A Aula 01 concentra toda a atividade em um único notebook.
+Os notebooks das Aulas 02 a 06 estão nomeados por questão, de modo que o arquivo correspondente a cada item da atividade é identificado pelo próprio nome. A Aula 01 concentra toda a atividade em um único notebook. A Aula 06 não possui pasta de arquivos de entrada: os sinais utilizados são gerados pelos próprios notebooks ou baixados do repositório da disciplina.
 
 ---
 
@@ -157,9 +164,9 @@ As figuras apresentadas nos relatórios estão em `resultados_graficos/`, na pas
 
 ## Reprodutibilidade
 
-Os notebooks obtêm os arquivos `.wav` e `.jpg` por download a partir deste próprio repositório, o que garante que sejam executáveis sem configuração prévia no Google Colab. Não são utilizados caminhos absolutos vinculados à máquina de nenhum dos autores.
+Os notebooks obtêm os arquivos `.wav` e `.jpg` por download a partir deste próprio repositório e, na Aula 06, o arquivo `.mat` a partir do repositório da disciplina, o que garante que sejam executáveis sem configuração prévia no Google Colab. Não são utilizados caminhos absolutos vinculados à máquina de nenhum dos autores.
 
-Os notebooks das Aulas 02 e 05 salvam suas figuras automaticamente via `plt.savefig(..., dpi=150)`. Nas Aulas 01 e 03 os gráficos são apenas exibidos na saída das células, e na Aula 04 apenas parte deles é salva automaticamente; nesses casos, as figuras versionadas em `resultados_graficos/` foram exportadas manualmente a partir da saída das células.
+Os notebooks das Aulas 02 e 05 salvam suas figuras automaticamente via `plt.savefig(..., dpi=150)`. Nas Aulas 01, 03 e 06 os gráficos são apenas exibidos na saída das células, e na Aula 04 apenas parte deles é salva automaticamente; nesses casos, as figuras versionadas em `resultados_graficos/` foram exportadas manualmente a partir da saída das células.
 
 As bibliotecas utilizadas estão listadas em `requirements.txt`. Nenhuma versão específica é exigida para reproduzir os resultados; as versões disponíveis por padrão no Google Colab são suficientes.
 
@@ -167,4 +174,4 @@ As bibliotecas utilizadas estão listadas em `requirements.txt`. Nenhuma versão
 
 ## Relatórios
 
-Os relatórios das Aulas 01 a 05 estão em `relatorio/`, dentro da pasta de cada aula, em formato PDF. Cada figura apresentada nos relatórios é referenciada pelo arquivo correspondente em `resultados_graficos/`, e os códigos que a geraram estão nos notebooks da mesma pasta.
+Os relatórios das Aulas 01 a 06 estão em `relatorio/`, dentro da pasta de cada aula, em formato PDF. Cada figura apresentada nos relatórios é referenciada pelo arquivo correspondente em `resultados_graficos/`, e os códigos que a geraram estão nos notebooks da mesma pasta.
